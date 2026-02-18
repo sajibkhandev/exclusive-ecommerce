@@ -1,9 +1,13 @@
 import React from 'react'
+import Shop from './layouts/Shop'
+import Navber from './layouts/Navber'
 
 const App = () => {
   return (
     <div>
-      <h1 className="text-3xl bg-red-500">This is Ecommerce </h1>
+      <Shop/>
+      <Navber/>
+      
     </div>
   )
 }
