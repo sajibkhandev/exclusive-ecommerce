@@ -7,6 +7,7 @@ import ListItem from '../components/ListItem'
 import { FiSearch } from "react-icons/fi";
 import { GoHeart } from 'react-icons/go'
 import { IoCartOutline } from 'react-icons/io5'
+import { Link } from 'react-router-dom'
 
 const Navber = () => {
     return (
@@ -14,14 +15,22 @@ const Navber = () => {
             <Container>
                 <Flex className='items-center'>
                     <div className='w-3/12 '>
-                    <Image src={Logo} alt="Logo" />
+                      <Link to='/about'><Image src={Logo} alt="Logo" /></Link>
                     </div>
                     <div className='w-5/12 '>
                     <ul className='flex gap-x-12'>
-                        <ListItem  text="Home"/>
-                        <ListItem  text="Contact"/>
-                        <ListItem  text="About"/>
-                        <ListItem  text="Sign Up"/>
+                        <Link to="/">
+                            <ListItem  text="Home"/>
+                        </Link>
+                        <Link to='/contact'>
+                             <ListItem  text="Contact"/>
+                        </Link>
+                        <Link to='/about'>
+                              <ListItem  text="About"/>
+                        </Link>
+                        <Link to='/signup'>
+                              <ListItem  text="Sign Up"/>
+                        </Link>
                         
                        
                     </ul>
