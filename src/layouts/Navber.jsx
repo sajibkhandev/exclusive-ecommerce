@@ -15,7 +15,7 @@ const Navber = () => {
             <Container>
                 <Flex className='items-center'>
                     <div className='w-3/12 '>
-                      <Link to='/about'><Image src={Logo} alt="Logo" /></Link>
+                      <Link to='/'><Image src={Logo} alt="Logo" /></Link>
                     </div>
                     <div className='w-5/12 '>
                     <ul className='flex gap-x-12'>
