@@ -11,7 +11,7 @@ const Banner = () => {
     <section className='pt-10 pb-[140px]'>
         <Container>
            <Flex>
-              <div className='w-3/12'>
+              <div className='relative w-3/12 after:absolute after:-top-[12%] after:right-1/6 after:w-px after:h-[110%] after:bg-[#00000080] after:content-[""]'>
               <ul className='flex flex-col gap-y-4'>
                 <CategoryItem type={true} text="Woman’s Fashion" />
                 <CategoryItem type={true} text="Men’s Fashion"  classNameIcon="ml-17"/>
