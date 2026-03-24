@@ -6,6 +6,8 @@ import BrowserByCategory from '../layouts/BrowserByCategory'
 import BestSellingProduct from '../layouts/BestSellingProduct'
 import Image from '../components/Image'
 import OurProduct from '../layouts/OurProduct'
+import Feature from '../layouts/Feature'
+import Others from '../layouts/Others'
 
 
 const Home = () => {
@@ -17,6 +19,8 @@ const Home = () => {
       <BestSellingProduct/>
       <Image className='mx-auto' src={Promotion}/>
       <OurProduct/>
+      <Feature/>
+      <Others/>
       
       
       
