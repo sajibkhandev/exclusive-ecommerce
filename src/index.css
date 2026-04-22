@@ -7,13 +7,14 @@
   --color-primary: #FAFAFA; 
   --color-secondary: #DB4444; 
   --color-third: #FFAD33; 
+  --color-four: #F5F5F5; 
   --font-pop: "Poppins", "sans-serif";
   --font-inter: "Inter", sans-serif;
   
 }
 
 .one{
-  background: #00000080;
+  background: #00000066;
 }
 
 
