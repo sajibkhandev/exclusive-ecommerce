@@ -1,14 +1,33 @@
 import React from 'react'
+import Container from '../components/Container'
+import Flex from '../components/Flex'
+import Image from '../components/Image'
+import Heading from '../components/Heading'
+import AboutImage from '../assets/aboutimage.png'
 
 
 const About = () => {
   return (
-    <div>
- 
-      <h1 className='text-5xl text-center py-10'>This is About page</h1>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit quae quod ipsam saepe repellat nihil repudiandae suscipit, sit nam distinctio voluptate dolore minima doloremque corrupti ducimus quam expedita! Sunt, accusamus molestiae. Ipsum omnis earum, minus dignissimos sunt deleniti. Quod nesciunt expedita hic doloremque dolores voluptates excepturi velit eligendi delectus nobis quam omnis voluptate quaerat commodi totam, labore nisi perspiciatis, accusamus quo iste dolor sapiente ex. Dignissimos error autem ad amet hic officiis laborum iste minus alias asperiores nemo rerum modi eaque rem facere vitae eligendi magnam earum saepe dolores, perspiciatis, deleniti beatae! Voluptatibus id minus libero aperiam quidem amet assumenda nam itaque quam praesentium aut cumque aspernatur enim delectus porro corrupti, omnis ad voluptas expedita, in corporis fugit molestiae inventore laboriosam! Veritatis, magni exercitationem iste laborum laboriosam excepturi perferendis illo omnis minus fugiat quae et eaque, voluptatum quasi? Consequatur repellat tempore laboriosam ullam voluptas quidem eos, sequi natus rerum deleniti dolores dignissimos commodi molestias quasi! Necessitatibus, laborum? Quis amet fugiat eveniet non provident sapiente! Laudantium non velit expedita aspernatur illo nam minus reiciendis quidem dolore atque ad, iure natus praesentium soluta amet porro nesciunt tempore blanditiis consequatur aliquam vitae voluptate. Illo ratione laudantium neque officiis consequatur nostrum, nisi exercitationem cum?</p>
+    <section className='relative overflow-hidden'>
       
-    </div>
+      <Container>
+        
+        <Flex className='justify-between py-[280px]'>
+          <div className='w-1/2'>
+            <Heading text="Our Story"/>
+            <p>Launced in 2015, Exclusive is South Asia’s premier online shopping makterplace with an active presense in Bangladesh. Supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sallers and 300 brands and serves 3 millioons customers across the region. </p>
+            <p>Exclusive has more than 1 Million products to offer, growing at a very fast. Exclusive offers a diverse assotment in categories ranging  from consumer.</p>
+          </div>
+          <div >
+            <Image className='absolute top-1/2 -translate-y-1/2 right-0 w-[calc(50%-108px)]' src={AboutImage}/>
+          </div>
+          
+        </Flex>
+
+      </Container>
+ 
+     
+    </section>
   )
 }
 

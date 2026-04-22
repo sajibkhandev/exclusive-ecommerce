@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from '../components/Container'
 import Heading from '../components/Heading'
 import Flex from '../components/Flex'
@@ -7,8 +7,16 @@ import CheckoutInput from '../components/CheckoutInput'
 import { IoMdCheckmark } from 'react-icons/io'
 import Button from '../components/Button'
 import Product from '../assets/product1.png'
+import Bkash from '../assets/bkash.png'
+import Nagad from '../assets/nagad.png'
+import Mastercard from '../assets/mastercard.png'
+import Visa from '../assets/visa.png'
 
 const Checkout = () => {
+  let [payment,setPayment]=useState("")
+
+ 
+  
   return (
     <section className='pt-20 pb-35'>
       <Container>
@@ -37,6 +45,7 @@ const Checkout = () => {
 
 
             </Flex>
+           
 
 
 
@@ -79,6 +88,41 @@ const Checkout = () => {
               <Flex className='justify-between border-b border-[#00000060] pb-4 mb-4'>
                 <p className='text-base text-black font-pop font-normal'>Total::</p>
                 <p className='text-base text-black font-pop font-normal'>$1750</p>
+              </Flex>
+
+
+              {/* <input className='text-red-500' type="radio" /> Bank */}
+              <Flex className='justify-between py-8'>
+
+
+                  <Flex className='gap-x-4 items-center'>
+                  <div onClick={()=>setPayment("bank")} className='flex justify-center items-center w-6 h-6 border-2 border-black rounded-full'>
+                      <div className={`w-3.5 h-3.5 ${payment=="bank"? "bg-black":"bg-transparent"} rounded-full`}></div>
+                </div>
+                <p onClick={()=>setPayment("bank")} className='text-base text-black font-normal font-pop cursor-pointer'>Bank</p>
+                </Flex>
+
+                <Flex className='gap-x-2 items-center'>
+                  <Image src={Bkash}/>
+                  <Image src={Visa}/>
+                  <Image src={Mastercard}/>
+                  <Image src={Nagad}/>
+                </Flex>
+              </Flex>
+
+
+
+              <Flex className='justify-between'>
+
+
+                  <Flex className='gap-x-4 items-center'>
+                  <div onClick={()=>setPayment("cash")} className='flex justify-center items-center w-6 h-6 border-2 border-black rounded-full'>
+                      <div className={`w-3.5 h-3.5 ${payment=="cash"? "bg-black":"bg-transparent"} rounded-full`}></div>
+                </div>
+                <p onClick={()=>setPayment("cash")} className='text-base text-black font-normal font-pop cursor-pointer'>Cash on delivery</p>
+                </Flex>
+
+                
               </Flex>
 
 
