@@ -8,6 +8,8 @@ import Empleyee from '../components/Empleyee'
 import Modal2 from '../assets/modal2.png'
 import OtherCard from '../components/OtherCard'
 import ServiceImage from '../assets/services.png'
+import AboutCard from '../components/AboutCard'
+import { RxHome } from 'react-icons/rx'
 
 
 const About = () => {
@@ -16,22 +18,31 @@ const About = () => {
 
       <Container>
 
-        <Flex className='justify-between py-[280px]'>
-          <div className='w-1/2'>
+        <Flex className='justify-between  pb-[280px] '>
+          <div className='w-1/2 pt-[200px]'>
             <Heading text="Our Story" />
-            <p>Launced in 2015, Exclusive is South Asia’s premier online shopping makterplace with an active presense in Bangladesh. Supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sallers and 300 brands and serves 3 millioons customers across the region. </p>
-            <p>Exclusive has more than 1 Million products to offer, growing at a very fast. Exclusive offers a diverse assotment in categories ranging  from consumer.</p>
+            <p className='text-base text-black font-pop font-normal pt-6'>Launced in 2015, Exclusive is South Asia’s premier online shopping makterplace with an active presense in Bangladesh. Supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sallers and 300 brands and serves 3 millioons customers across the region. </p>
+            <p  className='text-base text-black font-pop font-normal'>Exclusive has more than 1 Million products to offer, growing at a very fast. Exclusive offers a diverse assotment in categories ranging  from consumer.</p>
           </div>
-          <div className='w-1/2 '>
-            <Image className='absolute top-1/4 -translate-y-1/2 right-0 w-[calc(50%-108px)]' src={AboutImage} />
+          <div className='w-1/2'>
+            <Image className='absolute top-1/6 -translate-y-1/2 right-0 w-[calc(50%-108px)]' src={AboutImage} />
           </div>
 
         </Flex>
 
 
+        <Flex className='justify-between '>
+          <AboutCard title="10.5k " text="Sallers active our site" icon={<RxHome className='text-white text-4xl group-hover:text-black duration-300'/>}/>
+          <AboutCard title="10.5k " text="Sallers active our site" icon={<RxHome className='text-white text-4xl group-hover:text-black duration-300'/>}/>
+          <AboutCard title="10.5k " text="Sallers active our site" icon={<RxHome className='text-white text-4xl group-hover:text-black duration-300'/>}/>
+          <AboutCard title="10.5k " text="Sallers active our site" icon={<RxHome className='text-white text-4xl group-hover:text-black duration-300'/>}/>
+        
+       </Flex>
 
 
-        <Flex className='justify-between pb-[196px]'>
+
+
+        <Flex className='justify-between pb-[196px] pt-[140px]'>
           <Empleyee image={Modal2} name="Tom Cruise" deg="Founder & Chairman" />
           <Empleyee image={Modal2} name="Emma Watson" deg="Managing Director" />
           <Empleyee image={Modal2} name="Emma Watson" deg="Managing Director" />
