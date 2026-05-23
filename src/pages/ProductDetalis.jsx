@@ -4,29 +4,40 @@ import SubHeading from '../components/SubHeading'
 import Flex from '../components/Flex'
 import Image from '../components/Image'
 import Button from '../components/Button'
-import ProductMainImage from '../assets/productmainimage.png'
-import ProductSubImage from '../assets/productsubimage.png'
+
 import { FaMinus, FaPlus, FaStar } from "react-icons/fa";
 import { IoMdHeartEmpty } from 'react-icons/io'
 import { LuCar } from 'react-icons/lu'
 import Card from '../components/Card'
 import ProductOne from '../assets/product1.png'
 import ProductTwo from '../assets/product2.png'
+import SubImage1 from '../assets/sub-image1.png'
+import SubImage2 from '../assets/sub-image2.png'
+import SubImage3 from '../assets/sub-image3.png'
+import SubImage4 from '../assets/sub-image4.png'
 
 const ProductDetalis = () => {
-  let [color,setColor]=useState("")
-  let [size,setSize]=useState("")
+  const images = [
+    SubImage1,
+    SubImage2,
+    SubImage3,
+    SubImage4,
+
+  ];
+  let [color, setColor] = useState("")
+  let [size, setSize] = useState("")
+  const [mainImage, setMainImage] = useState(images[0]);
 
 
-  let handleColor=(name)=>{
+  let handleColor = (name) => {
     setColor(name);
-    
-    
+
+
   }
-  let handleSize=(name)=>{
+  let handleSize = (name) => {
     setSize(name);
-    
-    
+
+
   }
 
   return (
@@ -35,29 +46,47 @@ const ProductDetalis = () => {
         <p>Account / Gaming /Havic HV G-92 Gamepad</p>
 
         <Flex className='pt-20 pb-35'>
-          <div className='w-8/12 mr-18'>
-            <Flex className='justify-between'>
-              <Flex className='flex-col gap-y-4'>
-                <div className='flex justify-center items-center w-44 h-34.5 bg-four rounded'>
-                  <Image src={ProductSubImage} />
-                </div>
-                <div className='flex justify-center items-center w-44 h-34.5 bg-four rounded'>
-                  <Image src={ProductSubImage} />
-                </div>
-                <div className='flex justify-center items-center w-44 h-34.5 bg-four rounded'>
-                  <Image src={ProductSubImage} />
-                </div>
-                <div className='flex justify-center items-center w-44 h-34.5 bg-four rounded'>
-                  <Image src={ProductSubImage} />
-                </div>
 
+
+
+          <div className="w-8/12 mr-18">
+            <Flex className="justify-between">
+
+              {/* Sub Images */}
+              <Flex className="flex-col gap-y-4">
+                {images.map((img, index) => (
+                  <div
+                    key={index}
+                    onClick={() => setMainImage(img)}
+                    className="flex justify-center items-center w-44 h-34.5 bg-four rounded cursor-pointer border hover:border-black"
+                  >
+                    <Image
+                      preview={false}
+                      src={img}
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
               </Flex>
-              <div className='flex justify-center items-center rounded w-[500px] h-[600px] bg-four'>
-                <Image src={ProductMainImage} />
+
+              {/* Main Image */}
+              <div className="flex justify-center items-center rounded w-[500px] h-[600px] bg-four">
+                <Image className="w-[400px] h-[300px]"
+                  preview={false}
+                  src={mainImage}
+                />
               </div>
             </Flex>
-
           </div>
+
+
+
+
+
+
+
+
+          
           <div className='w-4/12'>
             <h3 className='text-2xl text-black font-inter font-semibold pb-4'>Havic HV G-92 Gamepad</h3>
 
@@ -78,22 +107,22 @@ const ProductDetalis = () => {
 
 
             <Flex className='gap-x-4 items-center py-6'>
-              <p  className='text-xl text-black font-normal font-pop cursor-pointer'>Colours: </p>
+              <p className='text-xl text-black font-normal font-pop cursor-pointer'>Colours: </p>
 
 
-              <div onClick={()=>handleColor("blue")} className={`flex justify-center items-center w-6 h-6 rounded-full ${color=="blue"? "border-black border-2" : "bg-blue-500" }`}>
-                <div className={`${color=="blue"? "w-4 h-4" : "w-full h-full"} rounded-full bg-blue-500`}></div>
+              <div onClick={() => handleColor("blue")} className={`flex justify-center items-center w-6 h-6 rounded-full ${color == "blue" ? "border-black border-2" : "bg-blue-500"}`}>
+                <div className={`${color == "blue" ? "w-4 h-4" : "w-full h-full"} rounded-full bg-blue-500`}></div>
               </div>
 
-              <div onClick={()=>handleColor("red")} className={`flex justify-center items-center w-6 h-6 rounded-full ${color=="red"? "border-black border-2" : "bg-red-500" }`}>
-                <div className={`${color=="red"? "w-4 h-4" : "w-full h-full"} rounded-full bg-red-500`}></div>
+              <div onClick={() => handleColor("red")} className={`flex justify-center items-center w-6 h-6 rounded-full ${color == "red" ? "border-black border-2" : "bg-red-500"}`}>
+                <div className={`${color == "red" ? "w-4 h-4" : "w-full h-full"} rounded-full bg-red-500`}></div>
               </div>
 
-              <div onClick={()=>handleColor("green")} className={`flex justify-center items-center w-6 h-6 rounded-full ${color=="green"? "border-black border-2" : "bg-green-500" }`}>
-                <div className={`${color=="green"? "w-4 h-4" : "w-full h-full"} rounded-full bg-green-500`}></div>
+              <div onClick={() => handleColor("green")} className={`flex justify-center items-center w-6 h-6 rounded-full ${color == "green" ? "border-black border-2" : "bg-green-500"}`}>
+                <div className={`${color == "green" ? "w-4 h-4" : "w-full h-full"} rounded-full bg-green-500`}></div>
               </div>
 
-           
+
 
 
 
@@ -104,27 +133,27 @@ const ProductDetalis = () => {
 
               <Flex className='gap-x-4'>
 
-                <div onClick={()=>handleSize("XS")} className={`flex justify-center items-center w-8 h-8  rounded ${size=="XS"?"bg-secondary":"border border-black/50"}`}>
-                  <p className={`cursor-pointer text-sm  font-inter font-medium ${size=="XS"?"text-white":"text-black"}`}>XS</p>
+                <div onClick={() => handleSize("XS")} className={`flex justify-center items-center w-8 h-8  rounded ${size == "XS" ? "bg-secondary" : "border border-black/50"}`}>
+                  <p className={`cursor-pointer text-sm  font-inter font-medium ${size == "XS" ? "text-white" : "text-black"}`}>XS</p>
                 </div>
 
-                <div onClick={()=>handleSize("S")} className={`flex justify-center items-center w-8 h-8  rounded ${size=="S"?"bg-secondary":"border border-black/50"}`}>
-                  <p className={`cursor-pointer text-sm  font-inter font-medium ${size=="S"?"text-white":"text-black"}`}>S</p>
+                <div onClick={() => handleSize("S")} className={`flex justify-center items-center w-8 h-8  rounded ${size == "S" ? "bg-secondary" : "border border-black/50"}`}>
+                  <p className={`cursor-pointer text-sm  font-inter font-medium ${size == "S" ? "text-white" : "text-black"}`}>S</p>
                 </div>
-                <div onClick={()=>handleSize("M")} className={`flex justify-center items-center w-8 h-8  rounded ${size=="M"?"bg-secondary":"border border-black/50"}`}>
-                  <p className={`cursor-pointer text-sm  font-inter font-medium ${size=="M"?"text-white":"text-black"}`}>M</p>
+                <div onClick={() => handleSize("M")} className={`flex justify-center items-center w-8 h-8  rounded ${size == "M" ? "bg-secondary" : "border border-black/50"}`}>
+                  <p className={`cursor-pointer text-sm  font-inter font-medium ${size == "M" ? "text-white" : "text-black"}`}>M</p>
                 </div>
 
-                <div onClick={()=>handleSize("L")} className={`flex justify-center items-center w-8 h-8  rounded ${size=="L"?"bg-secondary":"border border-black/50"}`}>
-                  <p className={`cursor-pointer text-sm  font-inter font-medium ${size=="L"?"text-white":"text-black"}`}>L</p>
+                <div onClick={() => handleSize("L")} className={`flex justify-center items-center w-8 h-8  rounded ${size == "L" ? "bg-secondary" : "border border-black/50"}`}>
+                  <p className={`cursor-pointer text-sm  font-inter font-medium ${size == "L" ? "text-white" : "text-black"}`}>L</p>
                 </div>
-                <div onClick={()=>handleSize("XL")} className={`flex justify-center items-center w-8 h-8  rounded ${size=="XL"?"bg-secondary":"border border-black/50"}`}>
-                  <p className={`cursor-pointer text-sm  font-inter font-medium ${size=="XL"?"text-white":"text-black"}`}>XL</p>
+                <div onClick={() => handleSize("XL")} className={`flex justify-center items-center w-8 h-8  rounded ${size == "XL" ? "bg-secondary" : "border border-black/50"}`}>
+                  <p className={`cursor-pointer text-sm  font-inter font-medium ${size == "XL" ? "text-white" : "text-black"}`}>XL</p>
                 </div>
-                
-              
-                
-               
+
+
+
+
 
               </Flex>
             </Flex>

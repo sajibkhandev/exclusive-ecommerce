@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../components/Container'
 import SubHeading from '../components/SubHeading'
 import Heading from '../components/Heading'
@@ -8,6 +8,19 @@ import Card from '../components/Card'
 import ProductOne from '../assets/product1.png'
 
 const BestSellingProduct = () => {
+    let [allData,setAllData]=useState([])
+
+    useEffect(()=>{
+        fetch("https://dummyjson.com/products")
+        .then(res=>res.json())
+        .then(data=>setAllData(data.products))
+
+    },[])
+
+
+
+
+
     return (
         <section className='pb-[140px]'>
             <Container>
@@ -21,10 +34,18 @@ const BestSellingProduct = () => {
 
 
                 <Flex className='justify-between pt-15'>
-                    <Card title="HAVIT HV-G92 Gamepad" image={ProductOne} saleprice="200" regularprice="250" badge="new" />
-                    <Card title="HAVIT HV-G92 Gamepad" image={ProductOne} saleprice="200" regularprice="250" badge="new" />
-                    <Card title="HAVIT HV-G92 Gamepad" image={ProductOne} saleprice="200" regularprice="250" badge="new" />
-                    <Card title="HAVIT HV-G92 Gamepad" image={ProductOne} saleprice="200" regularprice="250" badge="new" />
+
+                    {
+                        allData.map((item,index)=>(
+                            (index>3 && index<8) 
+                            &&
+                             <Card title={item.title} image={item.thumbnail} saleprice={item.price} regularprice="250" badge="new" />
+                             
+
+                        ))
+                    }
+                   
+                    
                 </Flex>
             </Container>
         </section>
