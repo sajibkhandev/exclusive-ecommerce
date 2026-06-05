@@ -9,6 +9,7 @@ import Button from '../components/Button'
 
 const OurProduct = () => {
      let [allData,setAllData]=useState([])
+     let [show,setShow]=useState(16)
   
       useEffect(()=>{
           fetch("https://dummyjson.com/products")
@@ -16,6 +17,15 @@ const OurProduct = () => {
           .then(data=>setAllData(data.products))
   
       },[])
+
+      let handleAllProducts=()=>{
+        if(show>=allData.length){
+            setShow(16)
+        }else{
+
+            setShow(allData.length)
+        }
+      }
 
 
 
@@ -25,12 +35,10 @@ const OurProduct = () => {
             <SubHeading text="Our Products"/>
             <Heading text="Explore Our Products"/>
 
-            <Flex className='justify-between pt-15 flex-wrap gap-y-15'>
+            <Flex className='gap-7.5 pt-15 flex-wrap gap-y-15'>
 
                {
-                        allData.map((item,index)=>(
-                            (index>7 && index<16) 
-                            &&
+                        allData.slice(8,show).map((item,index)=>(
                              <Card title={item.title} image={item.thumbnail} saleprice={item.price} regularprice="250" badge="new" />
                              
 
@@ -38,8 +46,9 @@ const OurProduct = () => {
                     }
                     
                 </Flex>
-               <div className='text-center pt-18'>
-                 <Button text="View All Products"/>
+               <div onClick={handleAllProducts} className='text-center pt-18'>
+                 <Button text={show>=allData.length?"View 16 Product" :"View All Products"}/>
+                 
                </div>
         </Container>
     </section>

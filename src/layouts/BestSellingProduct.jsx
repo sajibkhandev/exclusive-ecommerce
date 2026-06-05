@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import Container from '../components/Container'
 import SubHeading from '../components/SubHeading'
 import Heading from '../components/Heading'
@@ -9,6 +9,7 @@ import ProductOne from '../assets/product1.png'
 
 const BestSellingProduct = () => {
     let [allData,setAllData]=useState([])
+    let [show,setShow]=useState(4)
 
     useEffect(()=>{
         fetch("https://dummyjson.com/products")
@@ -16,6 +17,8 @@ const BestSellingProduct = () => {
         .then(data=>setAllData(data.products))
 
     },[])
+
+   
 
 
 
@@ -29,16 +32,17 @@ const BestSellingProduct = () => {
                         <SubHeading text="This Month" />
                         <Heading text="Best Selling Products" />
                     </div>
-                    <Button text="View All" />
+                    <div onClick={()=>setShow(show+4)}>
+                        <Button  text="View All" />
+                    </div>
                 </Flex>
 
 
-                <Flex className='justify-between pt-15'>
+                <Flex className='flex-wrap gap-7.5 pt-15'>
 
                     {
-                        allData.map((item,index)=>(
-                            (index>3 && index<8) 
-                            &&
+                        allData.slice(0,show).map((item,index)=>(
+                           
                              <Card title={item.title} image={item.thumbnail} saleprice={item.price} regularprice="250" badge="new" />
                              
 

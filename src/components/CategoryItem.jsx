@@ -2,7 +2,7 @@ import React from 'react'
 import { IoIosArrowForward } from 'react-icons/io'
 
 const CategoryItem = ({text,type,classNameli,classNameIcon}) => {
-    console.log(type);
+    // console.log(type);
     
   return (
     <li className={`text-black text-base font-pop font-normal ${classNameli}`}>{text}  

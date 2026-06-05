@@ -8,25 +8,34 @@ import Button from '../components/Button'
 
 
 const FlashSale = () => {
-    let [alldata,setAllData]=useState([])
+    let [alldata, setAllData] = useState([])
+    let [show, setShow] = useState(4)
 
 
-    useEffect( ()=>{
+    useEffect(() => {
 
         fetch("https://dummyjson.com/products")
-        .then(res=>res.json())
-        .then(data=>setAllData(data.products))
+            .then(res => res.json())
+            .then(data => setAllData(data.products))
 
 
-    },[])
+    }, [])
 
-    
-    
+    let handleAllProducts = () => {
 
-    
-    
-    
-    
+       setShow(show+4)
+
+    }
+
+
+
+
+
+
+
+
+
+
 
     return (
         <section className='mb-20'>
@@ -34,23 +43,30 @@ const FlashSale = () => {
                 <SubHeading text="Today’s" />
                 <Heading text="Flash Sales" />
 
-                <Flex className='justify-between flex-wrap pt-10 pb-15'>
+                <Flex className='gap-7.5 flex-wrap pt-10 pb-15'>
                     {
-                        alldata.map((item,index)=>(
-                            index<4 &&
+                        alldata.slice(0, show).map((item, index) => (
+
                             <Card title={item.title} image={item.thumbnail} saleprice={item.price} regularprice={"500"} badge="new" />
 
                         ))
 
                     }
-                    
-                   
+
+
 
                 </Flex>
-               <div className='text-center border-b border-[#0000004d] pb-15'>
-                 <Button text="View All Products"/>
-               </div>
-               
+              {
+                show<alldata.length 
+                ?
+                  <div onClick={handleAllProducts} className='text-center border-b border-[#0000004d] pb-15'>
+                    <Button text="View More Products" />
+
+                </div>
+                :
+                <p className='text-2xl text-center text-red-400'>No More Products</p>
+              }
+
 
             </Container>
         </section>
