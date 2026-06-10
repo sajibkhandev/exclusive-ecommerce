@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../components/Container'
 import SubHeading from '../components/SubHeading'
 import Flex from '../components/Flex'
@@ -15,8 +15,32 @@ import SubImage1 from '../assets/sub-image1.png'
 import SubImage2 from '../assets/sub-image2.png'
 import SubImage3 from '../assets/sub-image3.png'
 import SubImage4 from '../assets/sub-image4.png'
+import { useParams } from 'react-router-dom'
 
 const ProductDetalis = () => {
+  let [alldata, setAllData] = useState([])
+
+  let param=useParams()
+  // console.log(param.id);
+
+
+  useEffect(() => {
+  
+          fetch(`https://dummyjson.com/products/${param.id}`)
+              .then(res => res.json())
+              .then(data => setAllData(data))
+  
+  
+      }, [])
+
+
+      useEffect(()=>{
+        window.scrollTo({top:0})
+
+      },[])
+
+
+
   const images = [
     SubImage1,
     SubImage2,
@@ -31,13 +55,9 @@ const ProductDetalis = () => {
 
   let handleColor = (name) => {
     setColor(name);
-
-
   }
   let handleSize = (name) => {
     setSize(name);
-
-
   }
 
   return (
@@ -62,7 +82,7 @@ const ProductDetalis = () => {
                   >
                     <Image
                       preview={false}
-                      src={img}
+                      src={alldata.thumbnail}
                       className="object-cover"
                     />
                   </div>
@@ -73,22 +93,15 @@ const ProductDetalis = () => {
               <div className="flex justify-center items-center rounded w-[500px] h-[600px] bg-four">
                 <Image className="w-[400px] h-[300px]"
                   preview={false}
-                  src={mainImage}
+                  src={alldata.thumbnail}
                 />
               </div>
             </Flex>
           </div>
 
-
-
-
-
-
-
-
           
           <div className='w-4/12'>
-            <h3 className='text-2xl text-black font-inter font-semibold pb-4'>Havic HV G-92 Gamepad</h3>
+            <h3 className='text-2xl text-black font-inter font-semibold pb-4'>{alldata.title}</h3>
 
             <Flex className='items-center gap-x-3'>
               <ul className='flex gap-x-1'>
@@ -101,8 +114,8 @@ const ProductDetalis = () => {
               <p className='text-sm text-black/50 font-pop font-normal'>(150 Reviews) | </p>
               <p className='text-sm text-[#00FF66] font-pop font-normal'>In Stock</p>
             </Flex>
-            <h5 className='text-2xl text-black font-inter font-normal pt-4 pb-6'>$192.00</h5>
-            <p className='text-sm text-black font-pop font-normal border-b border-black/50 pb-6'>PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.</p>
+            <h5 className='text-2xl text-black font-inter font-normal pt-4 pb-6'>${alldata.price}</h5>
+            <p className='text-sm text-black font-pop font-normal border-b border-black/50 pb-6'>{alldata.description}</p>
 
 
 
@@ -197,8 +210,9 @@ const ProductDetalis = () => {
           </div>
         </Flex>
 
-        <SubHeading text="Related Item" />
 
+     {/* part two */}
+        <SubHeading text="Related Item" />
         <Flex className='justify-between pt-10 pb-15'>
           <Card title="HAVIT HV-G92 Gamepad" image={ProductOne} saleprice="200" regularprice="250" badge="new" />
           <Card title="Gamepad" image={ProductTwo} saleprice="200" regularprice="250" badge="new" />

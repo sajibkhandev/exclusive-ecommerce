@@ -4,13 +4,18 @@ import Product1 from '../assets/product1.png'
 import { FaStar } from "react-icons/fa6";
 import { GoHeart } from 'react-icons/go';
 import { FiEye } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 
-const Card = ({title,image,saleprice,regularprice,badge}) => {
+const Card = ({id,title,image,saleprice,regularprice,badge}) => {
   return (
-    <div className='w-67.5 h-87.5 '>
+
+        <div className='w-67.5 h-87.5 '>
         <div className='group relative overflow-hidden w-full h-62.5 flex justify-center items-center bg-[#F5F5F5] rounded' >
-            <Image src={image} alt="Product One"/>
+
+            <Link to={`/productdetalis/${id}`}>
+               <Image src={image} alt="Product One"/>
+            </Link>
 
             <div className='absolute top-3 left-3 flex justify-center items-center rounded bg-secondary h-6.5 w-13.75 text-primary text-xs font-pop font-normal '>
                 {badge}
@@ -25,7 +30,10 @@ const Card = ({title,image,saleprice,regularprice,badge}) => {
 
         </div>
         <div>
-            <h3 className='text-base text-[#000000] font-pop font-medium pt-4 pb-2'>{title}</h3>
+            <Link to={`/productdetalis/${id}`}>
+               <h3 className='text-base text-[#000000] font-pop font-medium pt-4 pb-2'>{title}</h3>
+            </Link>
+            
             <p className='text-base text-secondary font-medium font-pop'>${saleprice}<span className='text-[#00000080] pl-3'><del className='text-[#00000080]'>${regularprice}</del></span></p>
 
             <ul className='flex items-center space-x-1 pt-2'>
@@ -38,7 +46,10 @@ const Card = ({title,image,saleprice,regularprice,badge}) => {
             </ul>
         </div>
 
-    </div>
+        </div>
+
+   
+    
   )
 }
 

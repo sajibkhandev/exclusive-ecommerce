@@ -32,7 +32,7 @@ const router = createBrowserRouter(
         <Route path="cart" element={<Cart />}></Route>
         <Route path="checkout" element={<Checkout />}></Route>
         <Route path="products" element={<Products />}></Route>
-        <Route path="productdetalis" element={<ProductDetalis />}></Route>
+        <Route path="productdetalis/:id" element={<ProductDetalis />}></Route>
         <Route path="wishlist" element={<Wishlist />}></Route>
         <Route path="account" element={<Account />}></Route>
         <Route path="*" element={<Error />}></Route>

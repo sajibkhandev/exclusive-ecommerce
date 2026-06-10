@@ -39,7 +39,7 @@ const OurProduct = () => {
 
                {
                         allData.slice(8,show).map((item,index)=>(
-                             <Card title={item.title} image={item.thumbnail} saleprice={item.price} regularprice="250" badge="new" />
+                             <Card id={item.id} title={item.title} image={item.thumbnail} saleprice={item.price} regularprice="250" badge="new" />
                              
 
                         ))
