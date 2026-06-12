@@ -31,7 +31,7 @@ const ProductDetalis = () => {
               .then(data => setAllData(data))
   
   
-      }, [])
+      }, [param.id])
 
 
       useEffect(()=>{

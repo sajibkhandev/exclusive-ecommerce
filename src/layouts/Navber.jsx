@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../components/Container'
 import Flex from '../components/Flex'
 import Image from '../components/Image'
@@ -10,39 +10,99 @@ import { IoCartOutline } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 
 const Navber = () => {
+    let [alldata, setAllData] = useState([])
+    let [search, setSearch] = useState([])
+    let [input,setInput]=useState("")
+
+
+
+    let handleInput = (e) => {
+        setInput(e.target.value);
+
+      let search = alldata.filter(item=>item.title.toLowerCase().includes(e.target.value.toLowerCase()))
+      setSearch(search);
+      
+
+    }
+
+
+    useEffect(() => {
+        fetch("https://dummyjson.com/products")
+            .then(res => res.json())
+            .then(data => setAllData(data.products))
+
+
+    }, [])
+
+
+   
+   
+    
+
+    
+
+
+
+
+
+
+
     return (
         <nav className='pt-10 pb-4 border-b border-[#0000004d]'>
             <Container>
                 <Flex className='items-center'>
                     <div className='w-3/12 '>
-                      <Link to='/'><Image src={Logo} alt="Logo" /></Link>
+                        <Link to='/'><Image src={Logo} alt="Logo" /></Link>
                     </div>
                     <div className='w-5/12 '>
-                    <ul className='flex gap-x-12'>
-                        <Link to="/">
-                            <ListItem  text="Home"/>
-                        </Link>
-                        <Link to='/contact'>
-                             <ListItem  text="Contact"/>
-                        </Link>
-                        <Link to='/about'>
-                              <ListItem  text="About"/>
-                        </Link>
-                        <Link to='/signup'>
-                              <ListItem  text="Sign Up"/>
-                        </Link>
-                        
-                       
-                    </ul>
+                        <ul className='flex gap-x-12'>
+                            <Link to="/">
+                                <ListItem text="Home" />
+                            </Link>
+                            <Link to='/contact'>
+                                <ListItem text="Contact" />
+                            </Link>
+                            <Link to='/about'>
+                                <ListItem text="About" />
+                            </Link>
+                            <Link to='/signup'>
+                                <ListItem text="Sign Up" />
+                            </Link>
+
+
+                        </ul>
                     </div>
                     <div className='w-4/12 flex gap-x-10 items-center'>
-                       <div className='relative w-[243px] bg-[#F5F5F5] rounded'>
-                        <input className='w-full py-2.5 pl-5 pr-10  text-sm placeholder:text-[#00000080] placeholder:text-xs placeholder:font-normal placeholder:font-pop' type="text" placeholder='What are you looking for?'/>
-                        <FiSearch className='absolute top-1/2 -translate-y-1/2 right-3 text-xl'/>
-                       </div>
-                      <GoHeart className='text-2xl'/>
-                       <IoCartOutline className='text-[26px]'/>
+                        <div className='relative w-[243px] bg-[#F5F5F5] rounded'>
 
+
+                            <input value={input} onChange={handleInput} className='w-full py-2.5 pl-5 pr-10  text-sm placeholder:text-[#00000080] placeholder:text-xs placeholder:font-normal placeholder:font-pop' type="text" placeholder='What are you looking for?' />
+                            <FiSearch className='absolute top-1/2 -translate-y-1/2 right-3 text-xl' />
+
+                           {
+                            input.length > 0 &&
+
+                            search.length >0 &&
+
+
+                           
+
+                            <div className='z-50 absolute top-[50px] left-1/2 -translate-x-1/2 w-[150%] py-5
+                            px-10 bg-[#F5F5F5] rounded'>
+                            {
+                                search.map(item=>(
+                                    <Link onClick={()=>setInput("")} to={`productdetalis/${item.id}`}>
+                                       <li  className='list-none py-1 cursor-pointer'>{item.title}</li>
+                                    </Link>
+                                ))
+                            }
+                            </div>
+                           }
+
+                        </div>
+                        <GoHeart className='text-2xl' />
+                        <IoCartOutline className='text-[26px]' />
+                        
                     </div>
                 </Flex>
             </Container>
