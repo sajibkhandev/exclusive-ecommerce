@@ -10,13 +10,20 @@ import OtherCard from '../components/OtherCard'
 import ServiceImage from '../assets/services.png'
 import AboutCard from '../components/AboutCard'
 import { RxHome } from 'react-icons/rx'
+import { useDispatch, useSelector } from 'react-redux'
+import { increment } from '../slices/counterSlice'
 
 
 const About = () => {
+  let data=useSelector(state=>state.counter.value)
+    let dispatch=useDispatch()
   return (
     <section className='relative overflow-hidden mb-[140px]'>
 
       <Container>
+        <h1>Counter {data}</h1>
+        <button onClick={()=>dispatch(increment(20))}>INCREMENT</button>
+
 
         <Flex className='justify-between  pb-[280px] '>
           <div className='w-1/2 pt-[200px]'>
