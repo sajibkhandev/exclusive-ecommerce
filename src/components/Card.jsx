@@ -25,7 +25,7 @@ const Card = ({id,title,image,saleprice,regularprice,badge}) => {
 
             <div className='absolute top-13 right-3 flex justify-center items-center rounded-full bg-[#fafafa] h-8.5 w-8.5'><FiEye className='text-black'/></div>
 
-            <div className='rounded-b absolute -bottom-[20%] group-hover:bottom-0 left-0 w-full py-2 bg-black flex justify-center items-center duration-300 '><p className='text-base text-white font-medium font-pop'>Add To Cart</p></div>
+            <div className='cursor-pointer rounded-b absolute -bottom-[20%] group-hover:bottom-0 left-0 w-full py-2 bg-black flex justify-center items-center duration-300 '><p className='text-base text-white font-medium font-pop'>Add To Cart</p></div>
 
 
         </div>
