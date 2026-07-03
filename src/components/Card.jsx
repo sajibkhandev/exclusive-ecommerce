@@ -5,9 +5,28 @@ import { FaStar } from "react-icons/fa6";
 import { GoHeart } from 'react-icons/go';
 import { FiEye } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addtocart } from '../slices/addtocartSlice'
 
 
 const Card = ({id,title,image,saleprice,regularprice,badge}) => {
+    let dispatch=useDispatch()
+
+    let handleAddToCard=()=>{
+        dispatch(addtocart(
+            {   
+                id:id,
+                title:title,
+                image:image,
+                price:saleprice,
+                quantity:1
+
+
+
+            }
+    ))
+        
+    }
   return (
 
         <div className='w-67.5 h-87.5 '>
@@ -25,7 +44,7 @@ const Card = ({id,title,image,saleprice,regularprice,badge}) => {
 
             <div className='absolute top-13 right-3 flex justify-center items-center rounded-full bg-[#fafafa] h-8.5 w-8.5'><FiEye className='text-black'/></div>
 
-            <div className='cursor-pointer rounded-b absolute -bottom-[20%] group-hover:bottom-0 left-0 w-full py-2 bg-black flex justify-center items-center duration-300 '><p className='text-base text-white font-medium font-pop'>Add To Cart</p></div>
+            <div onClick={handleAddToCard} className='cursor-pointer rounded-b absolute -bottom-[20%] group-hover:bottom-0 left-0 w-full py-2 bg-black flex justify-center items-center duration-300 '><p className='text-base text-white font-medium font-pop'>Add To Cart</p></div>
 
 
         </div>

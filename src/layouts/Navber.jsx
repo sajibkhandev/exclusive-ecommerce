@@ -11,6 +11,7 @@ import { GoHeart } from 'react-icons/go'
 import { IoCartOutline } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 import { IoClose } from "react-icons/io5";
+import { useSelector } from 'react-redux'
 
 
 
@@ -19,6 +20,10 @@ const Navber = () => {
     let [search, setSearch] = useState([])
     let [input, setInput] = useState("")
     let [open, setOpne] = useState(false)
+
+    let data = useSelector(state => state.addtocart.value)
+
+
 
 
 
@@ -112,46 +117,28 @@ const Navber = () => {
                                     <li className='w-20'>SubTotal:</li>
                                 </ul>
                                 <div className='overflow-y-scroll h-[58vh]'>
-                                    <ul className='flex items-center  px-2 py-5 text-xs text-black/70 font-semibold border-b border-black/30'>
-                                        <li className='w-20'>Product one</li>
-                                        <li className='w-20 text-center '>
-                                            <Image className='w-6 mx-auto' src={ProductOne} />
-                                        </li>
-                                        <li className='w-20 flex justify-center gap-x-3 text-center border border-black/30 rounded py-1  '>
-                                            <button>-</button>
-                                            <button>1</button>
-                                            <button>+</button>
-                                        </li>
-                                        <li className='w-20 text-center'>40$</li>
-                                        <li className='w-20 text-center'>40$</li>
-                                    </ul>
-                                    <ul className='flex items-center  px-2 py-5 text-xs text-black/70 font-semibold border-b border-black/30'>
-                                        <li className='w-20'>Product one</li>
-                                        <li className='w-20 text-center '>
-                                            <Image className='w-6 mx-auto' src={ProductOne} />
-                                        </li>
-                                        <li className='w-20 flex justify-center gap-x-3 text-center border border-black/30 rounded py-1  '>
-                                            <button>-</button>
-                                            <button>1</button>
-                                            <button>+</button>
-                                        </li>
-                                        <li className='w-20 text-center'>40$</li>
-                                        <li className='w-20 text-center'>40$</li>
-                                    </ul>
 
-                                    <ul className='flex items-center  px-2 py-5 text-xs text-black/70 font-semibold border-b border-black/30'>
-                                        <li className='w-20'>Product one</li>
-                                        <li className='w-20 text-center '>
-                                            <Image className='w-6 mx-auto' src={ProductOne} />
-                                        </li>
-                                        <li className='w-20 flex justify-center gap-x-3 text-center border border-black/30 rounded py-1  '>
-                                            <button>-</button>
-                                            <button>1</button>
-                                            <button>+</button>
-                                        </li>
-                                        <li className='w-20 text-center'>40$</li>
-                                        <li className='w-20 text-center'>40$</li>
-                                    </ul>
+                                    {
+                                        data.map(item => (
+                                            <ul className='flex items-center  px-2 py-5 text-xs text-black/70 font-semibold border-b border-black/30'>
+                                                <li className='w-20'>{item.title}</li>
+                                                <li className='w-20 text-center '>
+                                                    <Image className='w-8 mx-auto' src={item.image} />
+                                                </li>
+                                                <li className='w-20 flex justify-center gap-x-3 text-center border border-black/30 rounded py-1  '>
+                                                    <button>-</button>
+                                                    <button>{item.quantity}</button>
+                                                    <button>+</button>
+                                                </li>
+                                                <li className='w-20 text-center'>{item.price}$</li>
+                                                <li className='w-20 text-center'>{item.price*item.quantity}$</li>
+                                            </ul>
+
+                                        ))
+                                    }
+
+
+
 
                                 </div>
 
