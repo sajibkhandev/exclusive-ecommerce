@@ -11,15 +11,19 @@ import { GoHeart } from 'react-icons/go'
 import { IoCartOutline } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 import { IoClose } from "react-icons/io5";
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { increment, decrement,removeitem } from '../slices/addtocartSlice'
+import { RxCross2 } from 'react-icons/rx'
 
 
 
 const Navber = () => {
+    let dispatch = useDispatch()
     let [alldata, setAllData] = useState([])
     let [search, setSearch] = useState([])
     let [input, setInput] = useState("")
     let [open, setOpne] = useState(false)
+    let [total, setTotal] = useState('')
 
     let data = useSelector(state => state.addtocart.value)
 
@@ -44,6 +48,32 @@ const Navber = () => {
         setOpne(!open)
 
     }
+
+    let handleIncrement = (item) => {
+        dispatch(increment(item))
+
+    }
+    let handleDerement = (item) => {
+        dispatch(decrement(item))
+
+    }
+    let handleRemove = (item) => {
+        dispatch(removeitem(item))
+
+    }
+
+
+
+    useEffect(() => {
+        let total = 0
+        data.map(item => {
+            total += item.quantity * item.price
+
+        })
+        setTotal(total)
+    },[data])
+
+
 
 
 
@@ -120,18 +150,19 @@ const Navber = () => {
 
                                     {
                                         data.map(item => (
-                                            <ul className='flex items-center  px-2 py-5 text-xs text-black/70 font-semibold border-b border-black/30'>
-                                                <li className='w-20'>{item.title}</li>
+                                            <ul className='relative flex items-center  px-2 py-5 text-xs text-black/70 font-semibold border-b border-black/30'>
+                                                <li onClick={()=>handleRemove(item)} className='w-20 absolute top-1/2 -translate-y-1/2 left-1'><RxCross2 className='text-sm'/></li>
+                                                <li className='w-20 ml-5'>{item.title}</li>
                                                 <li className='w-20 text-center '>
                                                     <Image className='w-8 mx-auto' src={item.image} />
                                                 </li>
                                                 <li className='w-20 flex justify-center gap-x-3 text-center border border-black/30 rounded py-1  '>
-                                                    <button>-</button>
+                                                    <button onClick={() => handleDerement(item)}>-</button>
                                                     <button>{item.quantity}</button>
-                                                    <button>+</button>
+                                                    <button onClick={() => handleIncrement(item)}>+</button>
                                                 </li>
                                                 <li className='w-20 text-center'>{item.price}$</li>
-                                                <li className='w-20 text-center'>{item.price*item.quantity}$</li>
+                                                <li className='w-20 text-center'>{item.price * item.quantity}$</li>
                                             </ul>
 
                                         ))
@@ -142,11 +173,19 @@ const Navber = () => {
 
                                 </div>
 
-                                <h1 className='mt-4 text-right text-2xl pr-5 font-semibold'>Total 400$</h1>
+                                <h1 className='mt-4 text-right text-2xl pr-5 font-semibold'>Total {Math.floor(total)}$</h1>
 
                                 <div className=' mt-2 mb-3 flex gap-x-6 justify-center'>
+
+                                    <Link to="/checkout">
                                     <Button className='py-2! px-4! text-sm!' text="Checkout" />
-                                    <Button className='py-2! px-4! text-sm!' text="View Cart" />
+                                    </Link>
+
+                                    <Link to="/cart">
+                                     <Button className='py-2! px-4! text-sm!' text="View Cart" />
+                                    </Link>
+                                    
+                                   
                                 </div>
 
                             </div>
@@ -160,3 +199,6 @@ const Navber = () => {
 }
 
 export default Navber
+
+
+

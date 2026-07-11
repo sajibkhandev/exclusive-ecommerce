@@ -6,18 +6,49 @@ export const addtocartSlice = createSlice({
     value: [],
   },
   reducers: {
-    addtocart: (state,action) => {
+    addtocart: (state, action) => {
 
-   let data= state.value.find(item=>item.title==action.payload.title)
-   if(data){
-    data.quantity+=1
-   }else{
-    state.value.push({...action.payload,quantity:1})
-   }
+      let data = state.value.find(item => item.title == action.payload.title)
+      if (data) {
+        data.quantity += 1
+      } else {
+        state.value.push({ ...action.payload, quantity: 1 })
+      }
 
     }
+    ,
+    increment: (state, action)=>{
+      state.value.map(item=>{
+        if(item.title==action.payload.title){
+          item.quantity+=1
+        }
+      })
+      
+      
+    },
+    decrement: (state, action)=>{
+      state.value.map(item=>{
+        if(item.title==action.payload.title){
+          if(item.quantity>1){
+            item.quantity-=1
+          }
+        }
+      })
+      
+      
+    },
+    removeitem: (state, action)=>{
+      state.value.map((item,index)=>{
+        if(item.title==action.payload.title){
+          state.value.splice(index,1)
+          
+        }
+      })
+      
+      
+    },
   },
 })
-export const { addtocart} = addtocartSlice.actions
+export const { addtocart,increment,decrement,removeitem } = addtocartSlice.actions
 
 export default addtocartSlice.reducer
